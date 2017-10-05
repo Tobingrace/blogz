@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Signup</title>
+        <style type="text/css">
+        body {
+        text-align: left;
+        }
+        
+            .error {
+                color: bright red;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Signup</h2>
+
+        <form method="post">
+            <label>
+                Username:<br>
+                <input type="text" name="username" minlength="3" maxlength="20" max"@"="1" value="">
+                <span class="error"></span><br>
+            </label>
+            <label>
+                Password:<br>
+                <input type="text" name="password" value="" minlength="3" maxlength="20"/>
+                
+                <span class="error"></span><br>
+            </label>
+            <label>
+                Verify Password:<br>       
+                <input type="text" name="verify password" value="" minlength="3" maxlength="20"/>
+                
+                <span class="error"></span><br>
+            </label>
+            <label>
+                Email:<br>
+                <input type="email" name="Email" {Email Address} (optional) value=""/><br><br>
+                
+            </label>
+            <input type="submit" value="Submit Query"/>
+        </form>
