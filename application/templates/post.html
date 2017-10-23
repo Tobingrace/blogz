@@ -1,0 +1,117 @@
+<!-- Starting block for html  -->
+
+{% if post != none %}
+        <article class="reply reply--depth-0 js_reply" style="display: block;">
+            <header class="reply__header js_author" style="float: center">
+                <a href="" class="avatar avatar-container js_avatar-container">
+                    <span class="icon--svg">
+                        <svg class="svg-icon small svg-checkmark--small">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#iconset-checkmark--small">
+                                <svg id="iconset-checkmark--small" viewBox="0 0 10 10" width="100%" height="100%">
+                                    <path d="M1.5 5.5l2 2 5-5"></path>
+                                </svg>
+                            </use>
+                        </svg>
+                    </span>
+                    {% if not post.author.avatar_link %}
+                        <img src="http://tinypost.co/wp-content/uploads/2016/09/COOL-mustaches-dp-for-whatsapp-profile-images.png" class="cz-color-12225536">
+                    {% else %}
+                        <img src={{post.author.avatar_link}} class="cz-color-12225536">
+                    {% endif %}
+                </a>
+                <span class="reply__byline cz-color-11184810">
+                    <a href="#" target="_self" class="fn url cz-color-0" onclick="window.ga('send', 'event', 'byline', 'click', 'permalink');">
+                        {% autoescape false %} 
+                        {{ _('%(username)s:', username='<a class="fn url cz-color-0" href="%s">%s</a>' % (url_for('user', username=post.author.username), post.author.username)) }} 
+                        {% endautoescape%}
+                    </a>
+                    <span class="reply__to-author cz-color-11184810">
+                        <span class="icon--svg u-downsized cz-color-11184810">
+                            <svg class="svg-icon svg-chevron chevron--right">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#iconset-chevron-right">
+                                    <svg id="iconset-chevron-right" viewBox="0 0 18 18" width="100%" height="100%">
+                                        <path d="M6.5 3.5l6 5.5-6 5.5"></path>
+                                    </svg>
+                                </use>
+                            </svg>
+                        </span>
+                        {{ post.title }}
+                    </span>
+                </span>
+                <div class="reply__publish-time cz-color-11184810">
+                    <a href="#" target="_self" class="cz-color-11184810">
+                        <span class="published updated cz-color-11184810">
+                            {% autoescape false %} {{ _('%(when)s:', when=momentjs(post.timestamp).fromNow())}} {% endautoescape %}
+                        </span>
+                    </a>
+                </div>
+                <div class="post-dropdown-ct js_post-dropdown-ct js_post-dropdown-ct-sticky cz-color-11184810">
+                    <a href="#" target="_self" class="post-dropdown-trigger js_post-menu-toggler icon--svg u-highlighted--onhover cz-color-12225536"
+                        data-dropdown="dropdown-1819469194" onclick="window.ga('send', 'event', 'Group Chats', 'Drop down click');">
+                        <svg class="svg-icon giant stroked svg-tools--giant">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#iconset-tools--giant">
+                                <svg id="iconset-tools--giant" viewBox="0 0 18 18" x="8" width="100%" height="100%">
+                                    <circle cx="2.5" cy="2.5" r="2" vector-effect="non-scaling-stroke"></circle>
+                                    <circle cx="2.5" cy="15.5" r="2" vector-effect="non-scaling-stroke"></circle>
+                                    <circle cx="2.5" cy="9" r="2" vector-effect="non-scaling-stroke"></circle>
+                                </svg>
+                            </use>
+                            <div class="post-dropdown-ct js_post-dropdown-ct js_post-dropdown-ct-sticky cz-color-11184810">
+                                <a href="#" target="_self" class="post-dropdown-trigger js_post-menu-toggler icon--svg u-highlighted--onhover cz-color-12225536"
+                                    data-dropdown="dropdown-1819469194" onclick="window.ga('send', 'event', 'Group Chats', 'Drop down click');">
+                                    <svg class="svg-icon giant stroked svg-tools--giant">
+                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#iconset-tools--giant">
+                                            <svg id="iconset-tools--giant" viewBox="0 0 18 18" x="8" width="100%" height="100%">
+                                                <circle cx="2.5" cy="2.5" r="2" vector-effect="non-scaling-stroke"></circle>
+                                                <circle cx="2.5" cy="15.5" r="2" vector-effect="non-scaling-stroke"></circle>
+                                                <circle cx="2.5" cy="9" r="2" vector-effect="non-scaling-stroke"></circle>
+                                            </svg>
+                                        </use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </svg>
+                    </a>
+                </div>
+            </header>
+            <div class="reply__content js_reply-content post-content blurable whitelisted-links cz-color-2236962">
+                <p>{{ post.content }}</p>
+            </div>
+            <div class="reply__sidebar cz-color-2236962">
+                <a href="#" class="js_like reply__recommend readonly-hide icon--svg u-undecorated u-darkened--onhover js_like_icon" title="Like">
+                    <svg class="svg-icon giant stroked-star--giant">
+                        <use xlink:href="#iconset-star--giant">
+                            <svg id="iconset-star--giant" viewBox="0 0 24 24" width="100%" height="100%">
+                                <path d="M12 17.68l-7.053 5.028 2.602-8.262L.585 9.292l8.662-.078L12 1l2.75 8.214 8.663.078-6.962 5.154 2.604 8.262z"></path>
+                            </svg>
+                        </use>
+                    </svg>
+                    <span class="like-count js_like_count">{{ g.user.followers.count() }}</span>
+                </a>
+            </div>
+            <div class="reply__tools js_reply-tools  cz-color-2236962">
+                <svg class="svg-icon svg-reply-right">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#iconset-reply-right">
+                        <svg id="iconset-reply-right" viewBox="0 0 18 18" width="100%" height="100%">
+                            <path d="M15.5 9.5H6.632s-4.214.376-4.132-4"></path>
+                            <path d="M11.5 5.5l4 4-4 4"></path>
+                        </svg>
+                    </use>
+                </svg>
+                <a href="#" class="js_reply-to-selected-post reply__link readonly-hide" data-id="1819459345" title="Reply" onclick="window.ga('send', 'event', 'Group Chats', 'Reply button click', 'in comment');">
+                    Reply
+                </a>
+            </div>
+        
+        {% if post != None %}
+        <div>
+            <img id="loading{{ post.post_id }}" style="display: none" src="https://twitter.com/twitter/statuses/687127778764824576">
+        </div style="text-align: center;">
+        {% endif %} {% if post.author.user_id == g.user.user_id %}
+        <a href="{{ url_for('delete', id = post.post_id) }}">
+            <div class="delete-button text-align: center;">
+                    {{ _('Delete') }}
+        </div>
+        </a>
+        {% endif %} {% endif %}
+    </article>

@@ -1,0 +1,16 @@
+<!-- -->
+{% macro render_field(field) %}
+{% if field.errors %}
+    {{ field(class_=class_, placeholder=field.errors|join(', '), **kwargs) }}
+{% elif not field.errors %}
+    {{bender_field(field)}}
+{% endif %}
+{% endmacro %}
+
+{% macro bender_field(field) %}
+{% if not field.errors %}
+    {{ field(class_=select_, placeholder=field.label.text.title(), **kwargs)}} 
+{% elif field.errors %}
+    {{ field(**kwargs)|safe }}
+{% endif %}
+{% endmacro %}

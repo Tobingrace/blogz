@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <!-- Setting Viewport and http meta options -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- Individual meta configurations -->
+    <meta name="Jason Hart" content="User-Signup">
+    <meta name="google-signin-client_id" content="493818398042-airuea9j6lffv9j934krg4mbtvor6qn1.apps.googleusercontent.com">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!-- Custom css -->
+    <link href="{{ url_for('static', filename='custom/style.css') }}" rel='stylesheet' type='text/css' />
+    <link href="{{ url_for('static', filename='custom/font-awesome.css') }}" rel='stylesheet' type='text/css' />
+    <link href="{{ url_for('static', filename='/custom/post-style.css') }}" rel='stylesheet' type='text/css' />
+    <!-- font-awesome icons -->
+    <!-- <link href="static/font-awesome.css" rel="stylesheet"> -->
+
+    <!-- //Custom Theme files -->
+    <!-- web font -->
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- //web font -->
+
+    <title>User Signup: LC101</title>
+
+    <!-- Javascript -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Custom js -->
+    <!-- Datetime conversion -->
+    <script src="/static/js/moment.min.js"></script>
+
+    <!-- Placeholder animation -->
+    <link href="{{ url_for('static', filename='js/superplaceholder.css') }}" />
+
+
+    <!-- Placeholder support -->
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }</script>
+
+</head>
+
+<body>
+    {% from "partials/_formhelpers.html" import render_field %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/index">Build-a-blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- <span class="navbar-toggler-icon"></span> -->
+        </button>
+        <div class="navbar-collapse collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+
+                    <!-- Show login and register options if the user isn't logged in -->
+                    {% if not g.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+                    </li>
+
+                    <!-- Show profile and logout options if the user is logged in -->
+                    {% elif g.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('user', username=g.user.username) }}">{{ _('Your Profile') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('followed') }}">{{ _('Friends') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}">{{ _('Logout') }}</a>
+                    </li>
+            </ul>
+            <form class="search-wrapper cf" action="{{ url_for('search') }}" method="post" name="g.search_form.search">
+                {{ g.search_form.hidden_tag() }}
+                <div>
+                    {{ render_field(g.search_form.search, class="glyphicon glyphicon-search", placeholder="Search") }}
+                </div>
+                <button type="submit">Search</button>
+                {% endif %}
+            </form>
+        </div>
+    </nav>
+    <!-- Import form helpers for any forms to handle errors  -->
+    {% from "partials/_messages.html" import helpers %} {% block content %} {% endblock %}
+    <!-- add section for block bodys flask/jinja -->
+    <!-- End block body flask/jinja -->
+</body>
+
+</html>

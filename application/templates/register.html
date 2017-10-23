@@ -1,0 +1,103 @@
+<!-- extendind base layout -->
+{% extends "layout.html" %}
+
+<!-- Starting block for html  -->
+{% block content %}
+<h2 style="text-align: center">{% include 'partials/_messages.html' %}</h2>
+
+<!-- main -->
+<div class="main-container">
+    {% from "partials/_formhelpers.html" import render_field %}
+    <div class="main-info">
+        <!-- Registration Form -->
+        <div class="login-form">
+                <h1>Register</h1>
+                <br>
+            <div class="login-container-top">
+                <form method='post' name="RegistrationForm">
+                    <div class="row">
+                        <div class="form-group">
+                            {{ form.hidden_tag() }}
+                        </div>
+                        <div class="form-group col-lg-6">
+                            {{ render_field(form.first) }}
+                        </div>
+                        <div class="form-group col-lg-6">
+                            {{ render_field(form.last) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(form.username) }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(form.email) }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(form.password) }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(form.confirm) }}
+                    </div>
+                    <div class="login-container-bottom">
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btn btn-primary" value="Register">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="social-icon">
+                <a href="#" class="social-button twitter"><i class="fa fa-twitter"></i></a>
+                <a href="#" class="social-button facebook"><i class="fa fa-facebook"></i></a> 
+                <a href="g_login" class="social-button google"><i class="fa fa-google-plus"></i></a> 
+                <a href="#" class="social-button drble"><i class="fa fa-dribbble"></i></a> 
+                <a href="#" class="social-button be"><i class="fa fa-behance"></i></a> 
+                <a href="#" class="social-button in"><i class="fa fa-linkedin"></i></a> 
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+<script>
+    superplaceholder({
+        el: input1,
+        sentences: ['Tommy', 'Oliver    ', 'Ivana   '],
+        options: {
+            loop: true,
+            startOnFocus: false
+        }
+    })
+    superplaceholder({
+        el: input2,
+        sentences: ['Gunn ', 'Clothesoff', 'Humpalot'],
+        options: {
+            loop: true,
+            startOnFocus: false
+        }
+    })
+    superplaceholder({
+        el: input3,
+        sentences: [' UrethraFranklin', 'StoneColdJaneAusten', 'Amanda Mattricks'],
+        options: {
+            loop: true,
+            startOnFocus: false
+        }
+    })
+    superplaceholder({
+        el: input4,
+        sentences: ['thisguys@email.com', 'thatgirl@email.com', 'ustwo@email.com'],
+        options: {
+            loop: true,
+            startOnFocus: false
+        }
+    })
+    superplaceholder({
+        el: input5,
+        sentences: ['.........', '.....', '.....'],
+        options: {
+            loop: true,
+            startOnFocus: false
+        }
+    })
+</script>
+-->
+{% endblock %}

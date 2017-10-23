@@ -1,0 +1,33 @@
+
+
+<!-- extendind base layout -->
+{% extends "layout.html" %}
+
+<!-- Starting block for html  -->
+{% block content %}
+{% from "partials/_messages.html" import helpers %}
+{% from "partials/_formhelpers.html" import render_field %}
+<br>
+<br>
+<h1 id="h1">What are people talking about?</h1>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+
+            {% for post in posts.items %}
+                {% include 'post.html' %} 
+            {% endfor %}
+
+            {% include "partials/_paginate.html" %}
+
+        </div>
+        <div class="col-md-5">
+                {% include "forms/_post-form.html" %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

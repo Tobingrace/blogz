@@ -1,0 +1,62 @@
+<!-- extendind base layout -->
+{% extends "layout.html" %}
+
+<!-- Starting block for html  -->
+{% block content %}
+
+<!-- start html and flask/jinja -->
+<div class="profile-form">
+    {% from "partials/_formhelpers.html" import render_field %}
+
+    <!-- Adding username to screen  -->
+    <h1>{{ user.username }}</h1>
+
+    <!-- adding users avatar if available -->
+    {% if user.avatar_link %}
+        <div style="width: 140px; height: 140px; border-radius: 50%; background-color: silver;" class="avatar avatar-container js_avatar-container">
+                <img src="{{ user.avatar_link }}">
+        </div>
+    {% else %}
+        <div style="width: 140px; height: 140px; border-radius: 50%; background-color: silver;" class="avatar avatar-container js_avatar-container">
+                <img src="http://tinypost.co/wp-content/uploads/2016/09/COOL-mustaches-dp-for-whatsapp-profile-images.png">
+        </div>
+    {% endif %}
+        
+        <!-- Loading about me section if the user has one -->
+        <div class="about-me-form" style="border-width: 4px; width: 70%;">
+            <h2>About Me:</h2>
+                {% if user.about_me %}
+                    <p>{{ user.about_me }}</p>
+                {% endif %}
+        </div>
+    </di>
+
+        {% if user.last_seen %}
+        <br>
+            <!-- Loading last see and convertingformat with momentjs.py && momentjs.js  -->
+            <em>{{ _('Last login:') }} {{ momentjs(user.last_seen).calendar() }}</em>
+        <br>
+        {% endif %}
+        <br>
+
+        <!-- Loading up follwers section, filling in with number of follers and number of peopole following -->
+        {{ _('Followers:') }} {{ user.followers.count() }} | {{ _('Following:') }} {{ user.followed.count() }} | 
+        <br>
+        <!-- Checking if the user viewing the post owns the post if so add edit options-->
+        {% if user.user_id == g.user.user_id %}
+            <a href="{{ url_for('edit') }}">{{ _('Edit your profile') }}</a>
+
+        <!-- Giving the option to follow the owner of the post if they are not already following -->
+        {% elif not g.user.is_following(user) %}
+            <a href="{{ url_for('follow', username=user.username) }}">{{ _('Follow') }}</a>
+
+        <!-- Giving the option to uffollow the owner of the post if they are already following -->
+        {% else %}
+            <a href="{{ url_for('unfollow', username=user.username) }}">{{ _('Unfollow') }}</a>
+        {% endif %}
+        <br>
+</div>
+
+<!-- For every post returned we will laydown a section for post.html  -->
+
+{% endblock %}

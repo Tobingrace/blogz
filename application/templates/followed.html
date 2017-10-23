@@ -1,0 +1,33 @@
+
+
+<!-- extendind base layout -->
+{% extends "layout.html" %}
+
+<!-- Starting block for html  -->
+{% block content %}
+
+{% from "partials/_formhelpers.html" import render_field %}
+<br>
+<br>
+<h1 id="h1" >What are your friends talking about?</h1>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            {% for post in posts.items %} 
+                {% if not g.user.user_id == post.user_id %} 
+                    {% include 'post.html' %} 
+                {% endif
+            %} {% endfor %}
+
+            {% include "partials/_paginate.html" %}
+        </div>
+        <div class="col-md-4">
+            {% include "forms/_post-form.html" %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

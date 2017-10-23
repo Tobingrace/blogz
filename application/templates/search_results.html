@@ -1,0 +1,11 @@
+<!-- extend base layout -->
+{% extends "layout.html" %}
+{% from "partials/_formhelpers.html" import render_field %}
+{% block content %}
+<h1 id="h1">{{ _('Search results for "%(query)s":', query = query) }}</h1>
+<br>
+<br>
+{% for post in results %}
+    {% include 'post.html' %}
+{% endfor %}
+{% endblock %}

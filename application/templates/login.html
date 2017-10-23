@@ -1,0 +1,85 @@
+<!-- extendind base layout -->
+{% extends "layout.html" %}
+
+<!-- Starting block for html  -->
+{% block content %}
+<h2 style="text-align: center">{% include 'partials/_messages.html' %}</h2>
+<div class="main-container">
+
+<!-- Import form helpers for any forms to handle errors  -->
+
+
+    <br>
+    <div class="main-info">
+        <!-- login form -->
+        <div class="login-form">
+            <h1>Login</h1>
+            <div class="login-container-top">
+                <form method='post' name="LoginForm">
+                    <div class="form-group">
+                        {% from "partials/_formhelpers.html" import render_field %}
+                        {{ form.hidden_tag() }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(form.username) }}
+                    </div>
+                    <div class="form-group">
+                        {{ render_field(form.password) }}
+                    </div>
+                        <label class="anim">
+                            <input type="checkbox" class="checkbox">
+                            <span id="remember"> Remember me ?</span>
+                        </label>
+                    <input type="submit" name="submit" class="btn btn-primary" value="Login">
+                </form>
+            </div>
+            <div class="login-container-bottom">
+                <h6>
+                    <a href="#">Forgot password?</a>
+                </h6>
+            </div>
+            <div class="social-icon">
+                <a href="/" class="social-button">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a href="/" class="social-button">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a href="/g_login" class="social-button">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+                <a href="/" class="social-button">
+                    <i class="fa fa-dribbble"></i>
+                </a>
+                <a href="/" class="social-button">
+                    <i class="fa fa-behance"></i>
+                </a>
+                <a href="/" class="social-button">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- js -->
+<!--
+<script>
+    superplaceholder({
+        el: input1,
+        sentences: ['john.smith11', 'lorem.ipsum55', 'example@name2'],
+        options: {
+            loop: true,
+            startOnFocus: false
+        }
+    })
+    superplaceholder({
+        el: input2,
+        sentences: ['.........', '.....', '.....'],
+        options: {
+            loop: true,
+            startOnFocus: false
+        }
+    })
+</script> 
+-->
+{% endblock %}
